@@ -52,12 +52,17 @@ public class GettingStartedApplication {
             return "error";
         }
     }
-    @GetMapping("/convert")
+   @GetMapping("/convert")
 String convert(Map<String, Object> model) {
     RelativisticModel.select();
-    var energy = Amount.valueOf("12 GeV");
 
-    model.put("result", "E=mc^2: " + energy + " = " + energy.to(SI.KILOGRAM));
+    final var result = java.util.Optional
+            .ofNullable(System.getenv().get("ENERGY"))
+            .map(Amount::valueOf)
+            .map(energy -> "E=mc^2: " + energy + " = " + energy.to(SI.KILOGRAM))
+            .orElse("ENERGY environment variable is not set!");
+
+    model.put("result", result);
     return "convert";
 }
     
