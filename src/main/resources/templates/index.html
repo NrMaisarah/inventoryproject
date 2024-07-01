@@ -1,92 +1,225 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'index')}">
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Welcome to Klinik Haiwan Ikhtiari</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #1e1e1e;
+        color: #f8f9fa;
+    }
+    .navbar {
+        background-color: #343a40;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .navbar-nav .nav-link {
+        font-weight: 500;
+        margin-left: 15px;
+        color: #f8f9fa !important;
+    }
+    .navbar-nav .nav-link:hover {
+        color: #007bff !important;
+    }
+    .hero-header {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, rgba(33, 37, 41, 0.8), rgba(33, 37, 41, 0.6)), url('https://docbowtie.com/files/2020/12/Acr76258195497408-1601288.jpg') center center;
+        background-size: cover;
+        filter: grayscale(15%);
+    }
+    .hero-header .container {
+        position: relative;
+        z-index: 1;
+        color: #f8f9fa;
+        text-align: center;
+        padding: 100px 0;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+    .hero-header h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        animation: fadeInDown 1s ease-out;
+    }
+    .hero-header p {
+        font-size: 1.5rem;
+        font-weight: 300;
+        animation: fadeInUp 1s ease-out;
+    }
+    .button {
+        display: inline-block;
+        padding: 12px 25px;
+        font-size: 18px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #1e1e1e;
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+    .hero-header .button-container {
+        margin-top: 30px;
+    }
+    .button-container {
+        text-align: center;
+    }
+    .button-container .button {
+        margin: 10px;
+    }
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .about-section {
+        background: #343a40;
+        padding: 50px 0;
+        text-align: center;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .about-section h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #007bff;
+    }
+    .about-section p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: #d1d1d1;
+    }
+    .about-section img {
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+    }
+    .about-section img:hover {
+        transform: scale(1.05);
+    }
+    .navbar .dropdown-menu {
+        background-color: #343a40; /* Dark background */
+        border: none; /* No border */
+    }
+    .navbar .dropdown-menu .dropdown-item {
+        color: #f8f9fa; /* Light text */
+    }
+    .navbar .dropdown-menu .dropdown-item:hover {
+        background-color: #007bff; /* Hover color */
+        color: #f8f9fa; /* Light text on hover */
+    }
+</style>
+<script>
+    function navigate() {
+        var dropdown = document.getElementById("inventory");
+        var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    }
+</script>
+</head>
 <body>
 
-<div class="jumbotron text-center">
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-        <a href="/" class="lang-logo">
-            <img alt="" src="/lang-logo.png">
-        </a>
-        <h1>Getting Started with Java on Heroku</h1>
-        <p>This is a sample Java application deployed to Heroku. It's a reasonably simple app - but a good foundation
-            for understanding how to get the most out of the Heroku platform.</p>
-        <a type="button" class="btn btn-lg btn-default"
-           href="https://devcenter.heroku.com/articles/getting-started-with-java"><span
-                class="glyphicon glyphicon-flash"></span> Getting Started with Java</a>
-        <a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/java-getting-started"><span
-                class="glyphicon glyphicon-download"></span> Source on GitHub</a>
-    </div>
-</div>
-
-<div class="container">
-    <div class="alert alert-info text-center" role="alert">
-        To deploy your own copy, and learn the fundamentals of the Heroku platform, head over to the <a
-            href="https://devcenter.heroku.com/articles/getting-started-with-java" class="alert-link">Getting Started
-        with Java on Heroku</a> tutorial.
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-6">
-            <h3><span class="glyphicon glyphicon-info-sign"></span> How this sample app works</h3>
-            <ul>
-                <li>This app was deployed to Heroku, either using Git or by using <a
-                        href="https://github.com/heroku/java-getting-started">Heroku Button</a> on the repository.
+    <a href="index.html">Home</a> |
+	<a href="formpage.html">Pet Food</a><br><br>
+	<a href="ListFoodController">List Pet Food</a><br><br>
+	<a href="formpageMed.html">Pet Medicine</a><br><br>
+<a href="ListMedicineController">List pet Medicines</a><br><br>
+    
+        <a href="index.html" class="navbar-brand">Klinik Haiwan Ikhtiari</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Home</a>
+                        <a href="index.html">Home</a> |
+	               <a href="formpage.html">Pet Food</a><br><br>
+	         <a href="ListFoodController">List Pet Food</a><br><br>
+        	<a href="formpageMed.html">Pet Medicine</a><br><br>
+           <a href="ListMedicineController">List pet Medicines</a><br><br>
                 </li>
-
-                <li>When Heroku received the source code, it fetched all the dependencies in the <a
-                        href="https://github.com/heroku/java-getting-started/blob/main/pom.xml">pom.xml</a>, creating a
-                    slug.
-                </li>
-              
-                <li>You can scale your app, manage it, and deploy over <a href="https://addons.heroku.com/">150 add-on
-                    services</a>, from the Dashboard or CLI.
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-6">
-            <h3><span class="glyphicon glyphicon-link"></span> Next Steps</h3>
-            <ul>
-                <li>If you are following the <a href="https://devcenter.heroku.com/articles/getting-started-with-java">Getting
-                    Started</a> guide, then please head back to the tutorial and follow the next steps!
-                </li>
-                <li>If you deployed this app by deploying the Heroku Button, then in a command line shell, run:</li>
-                <li>
-                    <ul>
-                        <li><code>git clone https://github.com/heroku/java-getting-started.git</code> - this will create
-                            a
-                            local copy of the source code for the app
-                        </li>
-                        <li><code>cd java-getting-started</code> - change directory into the local source code
-                            repository
-                        </li>
-                        <li><code>heroku git:remote -a &lt;your-app-name></code> - associate the Heroku app with the
-                            repository
-                        </li>
-                        <li>You'll now be set up to run the app locally, or <a
-                                href="https://devcenter.heroku.com/articles/getting-started-with-java#push-local-changes">deploy
-                            changes</a> to Heroku
-                        </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Products
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="viewpfcustomercontroller">Pet Food</a></li>
+                        <li><a class="dropdown-item" href="viewpmcustomercontroller">Pet Medicine</a></li>
                     </ul>
                 </li>
-            </ul>
-            <h3><span class="glyphicon glyphicon-link"></span> Helpful Links</h3>
-            <ul>
-                <li><a href="https://www.heroku.com/home">Heroku</a></li>
-                <li><a href="https://devcenter.heroku.com/">Heroku Dev Center</a></li>
-                <li><a href="https://devcenter.heroku.com/articles/getting-started-with-java">Getting Started with Java
-                    on Heroku</a></li>
-                <li><a href="https://devcenter.heroku.com/articles/deploying-java">Deploying Java Apps on Heroku</a>
+                <li class="nav-item">
+                    <a href="cart.jsp" class="nav-link">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <form class="d-flex" action="/search" method="get">
+                        <input type="text" name="query" class="form-control" placeholder="Search...">
+                        <button type="submit" class="btn btn-outline-primary ms-2">Search</button>
+                    </form>
                 </li>
             </ul>
         </div>
     </div>
+</nav>
+<!-- Navbar End -->
 
-    <div class="alert alert-info text-center" role="alert">
-        Please do work through the Getting Started guide, even if you do know how to build such an application. The
-        guide covers the basics of working with Heroku, and will familiarize you with all the concepts you need in order
-        to build and deploy your own apps.
+<!-- Hero Start -->
+<div class="container-fluid hero-header">
+    <div class="container">
+        <h1>Klinik Haiwan Ikhtiari</h1>
+        <p>Your Pet's Happiness, Our Passion.</p>
+        <div class="button-container">
+            <a href="custForm.jsp" class="button">Customer Sign Up</a>
+            <a href="staffForm.jsp" class="button">Staff Sign Up</a>
+        </div>
     </div>
 </div>
+<!-- Hero End -->
+
+<!-- About Start -->
+<div class="container about-section">
+    <h1>About Us</h1>
+    <p>Klinik Haiwan Ikhtiari located in Merlimau, Melaka. We have been operating for five years. We offer services including health consultations and treatments for pets, and we also sell pet needs that are recommended and affordable.</p>
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s" alt="Pet Clinic" class="img-fluid">
+        </div>
+        <div class="col-lg-6">
+            <p>Delivering specialized services focused on pet health since no other veterinary clinic at Merlimau other than the Department of Veterinary Services. Our clinic is very dedicated to delivering veterinary services with a focus on companion animals.</p>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl6ypsHfdE61yZzln3fxhRO6HcWV8QYgJ96aF5wRv5rJA81IU1am6nLY9H17" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVJB6mMX12QkFZ16yTADvOsRsbGA2e5im2c4ehDOww9U4rZ5hK9I9e5I4uN5Ir6b" crossorigin="anonymous"></script>
 
 </body>
 </html>
