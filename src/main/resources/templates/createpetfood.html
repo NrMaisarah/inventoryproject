@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Pet Food Information</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    
+</head>
+
+<body>
+    <a href="index.html">Home</a> |
+    <a href="formpage.html">Pet Food</a>
+    <a href="ListFoodController">List Pet Food</a><br><br>
+    
+    <form action="createPetFoodController" method="post" >
+        <label for="inventoryName">Inventory Name:</label><br>
+        <input type="text" id="inventoryName" name="inventoryName" required><br>
+        
+        <label for="inventoryBrand">Inventory Brand:</label><br>
+        <input type="text" id="inventoryBrand" name="inventoryBrand" required><br>
+        
+        
+        <br>
+        
+        <label for="foodWeight">Food Weight(gram):</label><br>
+        <input type="number" id="foodWeight" name="foodWeight" required><br>
+        
+        <label for="inventoryCategory">Inventory Category:</label><br>
+        <label><input type="radio" name="inventoryCategory" value="Pet Food" required> Pet Food</label>
+       
+        <label><input type="radio" name="inventoryCategory" value="Pet Medicine" required> Pet Medicine</label>
+        <br>
+        
+        <label for="inventoryPrice">Inventory Price:</label><br>
+        <input type="number" id="inventoryPrice" name="inventoryPrice" step="0.01" required><br>
+        
+        <label for="quantityIn">Quantity In:</label><br>
+        <input type="number" id="quantityIn" name="quantityIn" required><br>
+        
+      
+        
+        <label for="inventoryQuantityExisting">Inventory Quantity Existing:</label><br>
+        <input type="number" id="inventoryQuantityExisting" name="inventoryQuantityExisting" required><br>
+        
+        <label for="reorderPoint">Inventory Reorder Point:</label><br>
+        <input type="number" id="reorderPoint" name="reorderPoint" required><br>
+        
+        <br>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+</body>
+</html>
