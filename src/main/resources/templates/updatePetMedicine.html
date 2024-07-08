@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Update Pet Medicine</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Import Google fonts */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #dfe9f5;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            background: #fff;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        nav {
+            width: 280px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            border-radius: 15px 0 0 15px;
+        }
+
+        nav .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        nav .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        nav .logo span {
+            font-weight: bold;
+            padding-left: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 20px 0;
+        }
+
+        nav ul li a {
+            color: rgb(85, 83, 83);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        nav ul li a i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        nav ul li a:hover {
+            background: #eee;
+        }
+
+        nav ul li .dropdown-content {
+            display: none;
+            flex-direction: column;
+        }
+
+        nav ul li:hover .dropdown-content {
+            display: flex;
+        }
+
+        nav ul li .dropdown-content a {
+            padding: 10px 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        nav ul li .dropdown-content a:hover {
+            background: #eee;
+        }
+
+        nav ul li .logout {
+            position: absolute;
+            bottom: 20px;
+            width: calc(100% - 40px);
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: 500;
+        }
+
+        form input[type="text"],
+        form input[type="number"],
+        form input[type="submit"],
+        form input[type="reset"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form input[type="submit"],
+        form input[type="reset"] {
+            background: orangered;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin: 10px 5px 0 0;
+        }
+
+        form input[type="submit"]:hover,
+        form input[type="reset"]:hover {
+            background: rgba(223, 70, 15, 0.856);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s" alt="Pet Clinic">
+                <span>Dashboard</span>
+            </div>
+            <ul>
+                <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a th:href="@{/staffhomepage}"><i class="fas fa-home"></i> Home</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-wallet"></i> Inventory</a>
+                    <div class="dropdown-content">
+                        <a th:href="@{/ListFood}"><i class="fas fa-drumstick-bite"></i> Pet Food</a>
+                        <a th:href="@{/ListMedicine}"><i class="fas fa-pills"></i> Pet Medicine</a>
+                    </div>
+                </li>
+                <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
+            </ul>
+        </nav>
+        <div class="main">
+            <div class="form-container">
+                <h2>Update Pet Medicine</h2>
+                <form action="updatePetMedicineController" method="post">
+                    <label for="inventoryID">Inventory ID:</label>
+                    <input type="text" name="inventoryID" th:value="${petmedicine.inventoryID}" size="50" readonly><br>
+
+                    <label for="inventoryName">Name:</label>
+                    <input type="text" name="inventoryName" th:value="${petmedicine.inventoryName}" size="50"><br>
+
+                    <label for="inventoryBrand">Brand:</label>
+                    <input type="text" name="inventoryBrand" th:value="${petmedicine.inventoryBrand}" size="50"><br>
+
+                    <label for="inventoryCategory">Category:</label>
+                    <input type="text" name="inventoryCategory" th:value="${petmedicine.inventoryCategory}" size="50"><br>
+
+                    <label for="inventoryPrice">Price:</label>
+                    <input type="text" name="inventoryPrice" th:value="${petmedicine.inventoryPrice}" step="0.01"><br>
+
+                    <label for="quantityIn">Quantity In:</label>
+                    <input type="number" name="quantityIn" th:value="${petmedicine.quantityIn}"><br>
+
+                    <label for="inventoryQuantityExisting">Inventory Quantity Existing:</label>
+                    <input type="number" name="inventoryQuantityExisting" th:value="${petmedicine.inventoryQuantityExisting}" readonly><br>
+
+                    <label for="inventoryReorderPoint">Reorder Point:</label>
+                    <input type="number" name="inventoryReorderPoint" th:value="${petmedicine.inventoryReorderPoint}" readonly><br>
+
+                    <br><br>
+                    <input type="submit" value="Submit">
+                    <input type="reset" value="Reset">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
