@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>View Food Details</title>
+    
+    <style>
+        table {
+            width: 50%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            text-decoration: none;
+            padding: 5px 10px;
+            margin: 2px;
+            border-radius: 5px;
+            color: white;
+        }
+        .btn-primary {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+<a href="customerhomepage.jsp">Home</a><br><br>
+
+<h1>Food Details</h1>
+
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <td th:text="${petfood.inventoryID}"></td>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <td th:text="${petfood.inventoryName}"></td>
+    </tr>
+    <tr>
+        <th>Brand</th>
+        <td th:text="${petfood.inventoryBrand}"></td>
+    </tr>
+    <tr>
+        <th>Category</th>
+        <td th:text="${petfood.inventoryCategory}"></td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td th:text="${petfood.inventoryPrice}"></td>
+    </tr>
+    <tr>
+        <th>Weight (gram)</th>
+        <td th:text="${petfood.foodWeight}"></td>
+    </tr>
+    <tr>
+        <th>Quantity Available</th>
+        <td th:text="${petfood.inventoryQuantityExisting}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
