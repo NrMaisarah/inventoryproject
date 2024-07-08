@@ -1,157 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Welcome to Klinik Haiwan Ikhtiari</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<style>
-    body {
-        font-family: 'Roboto', sans-serif;
-        background-color: #1e1e1e;
-        color: #f8f9fa;
-    }
-    .navbar {
-        background-color: #343a40;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    .navbar-nav .nav-link {
-        font-weight: 500;
-        margin-left: 15px;
-        color: #f8f9fa !important;
-    }
-    .navbar-nav .nav-link:hover {
-        color: #007bff !important;
-    }
-    .hero-header {
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(135deg, rgba(33, 37, 41, 0.8), rgba(33, 37, 41, 0.6)), url('https://docbowtie.com/files/2020/12/Acr76258195497408-1601288.jpg') center center;
-        background-size: cover;
-        filter: grayscale(15%);
-    }
-    .hero-header .container {
-        position: relative;
-        z-index: 1;
-        color: #f8f9fa;
-        text-align: center;
-        padding: 100px 0;
-        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-    }
-    .hero-header h1 {
-        font-size: 4rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        animation: fadeInDown 1s ease-out;
-    }
-    .hero-header p {
-        font-size: 1.5rem;
-        font-weight: 300;
-        animation: fadeInUp 1s ease-out;
-    }
-    .button {
-        display: inline-block;
-        padding: 12px 25px;
-        font-size: 18px;
-        cursor: pointer;
-        text-align: center;
-        text-decoration: none;
-        outline: none;
-        color: #1e1e1e;
-        background-color: #007bff;
-        border: none;
-        border-radius: 8px;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    .button:hover {
-        background-color: #0056b3;
-        transform: scale(1.05);
-    }
-    .hero-header .button-container {
-        margin-top: 30px;
-    }
-    .button-container {
-        text-align: center;
-    }
-    .button-container .button {
-        margin: 10px;
-    }
-    @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
+    <meta charset="UTF-8">
+    <title>Welcome to Klinik Haiwan Ikhtiari</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1e1e1e;
+            color: #f8f9fa;
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        .navbar {
+            background-color: #343a40;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
-    }
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            margin-left: 15px;
+            color: #f8f9fa !important;
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        .navbar-nav .nav-link:hover {
+            color: #007bff !important;
         }
-    }
-    .about-section {
-        background: #343a40;
-        padding: 50px 0;
-        text-align: center;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    }
-    .about-section h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-        color: #007bff;
-    }
-    .about-section p {
-        font-size: 1.1rem;
-        line-height: 1.7;
-        color: #d1d1d1;
-    }
-    .about-section img {
-        border-radius: 10px;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease;
-    }
-    .about-section img:hover {
-        transform: scale(1.05);
-    }
-    .navbar .dropdown-menu {
-        background-color: #343a40; /* Dark background */
-        border: none; /* No border */
-    }
-    .navbar .dropdown-menu .dropdown-item {
-        color: #f8f9fa; /* Light text */
-    }
-    .navbar .dropdown-menu .dropdown-item:hover {
-        background-color: #007bff; /* Hover color */
-        color: #f8f9fa; /* Light text on hover */
-    }
-</style>
-<script>
-    function navigate() {
-        var dropdown = document.getElementById("inventory");
-        var selectedValue = dropdown.options[dropdown.selectedIndex].value;
-        if (selectedValue) {
-            window.location.href = selectedValue;
+        .hero-header {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(33, 37, 41, 0.8), rgba(33, 37, 41, 0.6)), url('https://docbowtie.com/files/2020/12/Acr76258195497408-1601288.jpg') center center;
+            background-size: cover;
+            filter: grayscale(15%);
         }
-    }
-</script>
+        .hero-header .container {
+            position: relative;
+            z-index: 1;
+            color: #f8f9fa;
+            text-align: center;
+            padding: 100px 0;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+        .hero-header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+        .hero-header p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #1e1e1e;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .hero-header .button-container {
+            margin-top: 30px;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button-container .button {
+            margin: 10px;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .about-section {
+            background: #343a40;
+            padding: 50px 0;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .about-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #d1d1d1;
+        }
+        .about-section img {
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .about-section img:hover {
+            transform: scale(1.05);
+        }
+        .navbar .dropdown-menu {
+            background-color: #343a40; /* Dark background */
+            border: none; /* No border */
+        }
+        .navbar .dropdown-menu .dropdown-item {
+            color: #f8f9fa; /* Light text */
+        }
+        .navbar .dropdown-menu .dropdown-item:hover {
+            background-color: #007bff; /* Hover color */
+            color: #f8f9fa; /* Light text on hover */
+        }
+    </style>
+    <script th:inline="javascript">
+        function navigate() {
+            var dropdown = document.getElementById("inventory");
+            var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        }
+    </script>
 </head>
 <body>
-
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-    <a href="index.html">Home</a> |
-	<a href="formpage.html">Pet Food</a><br><br>
-	<a href="ListFoodController">List Pet Food</a><br><br>
-	<a href="formpageMed.html">Pet Medicine</a><br><br>
-<a href="ListMedicineController">List pet Medicines</a><br><br>
-    
         <a href="index.html" class="navbar-brand">Klinik Haiwan Ikhtiari</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -160,19 +153,14 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a href="index.html" class="nav-link active">Home</a>
-                        <a href="index.html">Home</a> |
-	               <a href="formpage.html">Pet Food</a><br><br>
-	         <a href="ListFoodController">List Pet Food</a><br><br>
-        	<a href="formpageMed.html">Pet Medicine</a><br><br>
-           <a href="ListMedicineController">List pet Medicines</a><br><br>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Products
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="viewpfcustomercontroller">Pet Food</a></li>
-                        <li><a class="dropdown-item" href="viewpmcustomercontroller">Pet Medicine</a></li>
+                        <li><a class="dropdown-item" th:href="@{/viewpfcustomercontroller}">Pet Food</a></li>
+                        <li><a class="dropdown-item" th:href="@{/viewpmcustomercontroller}">Pet Medicine</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -196,8 +184,8 @@
         <h1>Klinik Haiwan Ikhtiari</h1>
         <p>Your Pet's Happiness, Our Passion.</p>
         <div class="button-container">
-            <a href="custForm.jsp" class="button">Customer Sign Up</a>
-            <a href="staffForm.jsp" class="button">Staff Sign Up</a>
+            <a th:href="@{/custForm}" class="button">Customer Sign Up</a>
+            <a th:href="@{/staffForm}" class="button">Staff Sign Up</a>
         </div>
     </div>
 </div>
@@ -220,6 +208,5 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl6ypsHfdE61yZzln3fxhRO6HcWV8QYgJ96aF5wRv5rJA81IU1am6nLY9H17" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVJB6mMX12QkFZ16yTADvOsRsbGA2e5im2c4ehDOww9U4rZ5hK9I9e5I4uN5Ir6b" crossorigin="anonymous"></script>
-
 </body>
 </html>
