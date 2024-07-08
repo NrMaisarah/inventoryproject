@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Staffs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
+        <div>
+            <a th:href="@{/managerhomepage}" class="navbar-brand">Back</a>
+        </div>
+    </nav>
+</header>
+<br>
+
+<div class="row">
+    <div class="container">
+        <h3 class="text-center">List of Staffs</h3>
+        <hr>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>ManagerID</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="staff : ${listStaff}">
+                    <td th:text="${staff.staffID}"></td>
+                    <td th:text="${staff.staffName}"></td>
+                    <td th:text="${staff.staffPassword}"></td>
+                    <td th:text="${staff.staffEmail}"></td>
+                    <td th:text="${staff.staffRole}"></td>
+                    <td th:text="${staff.managerID}"></td>
+                    <td>
+                        <a th:href="@{/staffServlet(action='edit', staffID=${staff.staffID})}" class="btn btn-primary btn-sm mr-2">Edit</a>
+                        <button class="btn btn-danger btn-sm mr-2" th:onclick="'confirmation(' + ${staff.staffID} + ')'">Delete</button>
+                        <a th:href="@{/staffServlet(action='view', staffID=${staff.staffID})}" class="btn btn-info btn-sm">View</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+        function confirmation(staffID) {
+            var r = confirm("Are you sure you want to delete?");
+            if (r == true) {
+                location.href = 'staffServlet?action=delete&staffID=' + staffID;
+                alert("Account successfully deleted");
+            } else {
+                return false;
+            }
+        }
+        </script>
+    </div>
+</div>
+
+</body>
+</html>
