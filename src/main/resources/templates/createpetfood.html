@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -162,6 +163,8 @@
         .main-skills .card button:hover {
             background: rgba(223, 70, 15, 0.856);
         }
+
+
 .main-skills .card i {
             font-size: 22px;
             margin-bottom: 10px;
@@ -266,6 +269,8 @@
     </style>
     
     <script>
+       
+
         // Mock function to get the staffID from session (for demonstration purposes)
         function getStaffIDFromSession() {
             // You would implement this to fetch the actual staffID, e.g., from a session storage or a cookie
@@ -277,41 +282,81 @@
             setStaffID();
         }
     </script>
+    
+    
 </head>
 
 <body>
-<div class="container">
-        <nav>
-            <ul>
-                <li><a href="#" class="logo">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s" alt="Pet Clinic"> 
-                    <span class="nav-item">Dashboard</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="fas fa-user"></i>
-                    <span class="nav-item">Profile</span>
-                </a></li>
-                <li><a href="staffhomepage.html">
-                    <i class="fas fa-home"></i>
-                    <span class="nav-item">Home</span>
-                </a></li>
-                <li class="dropdown"><a href="#">
-                    <i class="fas fa-wallet"></i>
-                    <span class="nav-item">Inventory</span>
-                </a>
-                    <div class="dropdown-content">
-                        <a href="ListFoodController"><i class="fas fa-drumstick-bite"></i> Pet Food</a>
-                        <a href="ListMedicineController"><i class="fas fa-pills"></i> Pet Medicine</a>
-                    </div>
-                </li>
-                <li><a href="#" class="logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span class="nav-item">Log out</span>
-                </a></li>
-            </ul>
-        </nav>
+      <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#" class="logo">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s" alt="Pet Clinic"> 
+          <span class="nav-item">Dashboard</span>
+        </a></li>
+        <li><a href="<%= request.getContextPath() %>/staffServlet?staffID=<%= staffID %>&action=view">
+          <i class="fas fa-user"></i>
+          <span class="nav-item">Profile</span>
+        </a></li>
+        <li><a href="staffhomepage.jsp">
+          <i class="fas fa-home"></i>
+          <span class="nav-item">Home</span>
+        </a></li>
+      
+        
+        <li><a href="<%= request.getContextPath() %>/Logout" class="logout">
+  <i class="fas fa-sign-out-alt"></i>
+  <span class="nav-item">Log out</span>
+</a>
+</li>
+      </ul>
+    </nav>
 
-        <div class="main">
+
+<div class="main">
             <div class="form-container">
                 <h2>Create Pet Food</h2>
-                <form th:action="@{/createPetFoodController
+                <form action="createPetFoodController" method="post" onsubmit="setStaffID()"  >
+                
+                <input type = "hidden" id = "staffID" name = staffID value = "${staffID}">
+                    <label for="inventoryName">Inventory Name:</label>
+                    <input type="text" id="inventoryName" name="inventoryName" required>
+
+
+<label for="inventoryBrand">Inventory Brand:</label>
+                    <input type="text" id="inventoryBrand" name="inventoryBrand" required>
+
+                    <label for="foodWeight">Food Weight (gram):</label>
+                    <input type="number" id="foodWeight" name="foodWeight" required>
+
+                    <label for="inventoryCategory">Inventory Category:</label>
+                    <label><input type="radio" name="inventoryCategory" value="Pet Food" required> Pet Food</label>
+                    <label><input type="radio" name="inventoryCategory" value="Pet Medicine" required> Pet Medicine</label>
+
+          <label for="foodType">Food Type:</label>
+                    <label><input type="radio" name="foodType" value="Kibbles" required> Kibbles</label>
+                    <label><input type="radio" name="foodType" value="Wet food" required> Wet food</label>
+
+                    <label for="inventoryPrice">Inventory Price:</label>
+                    <input type="number" id="inventoryPrice" name="inventoryPrice" step="0.01" required>
+
+                    <label for="quantityIn">Quantity In:</label>
+                    <input type="number" id="quantityIn" name="quantityIn" required>
+
+                    <label for="inventoryQuantityExisting">Inventory Quantity Existing:</label>
+                    <input type="number" id="inventoryQuantityExisting" name="inventoryQuantityExisting" required>
+
+                    <label for="inventoryReorderPoint">Inventory Reorder Point:</label>
+                    <input type="number" id="inventoryReorderPoint" name="inventoryReorderPoint" required>
+
+                
+
+
+                    <input type="submit" value="Submit">
+                    <input type="reset" value="Reset">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
