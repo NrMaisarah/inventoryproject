@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Info</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar {
+            background-color: #ff8c00; /* Darker orange */
+        }
+        .navbar-brand {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        h1 {
+            color: #ff8c00; /* Darker orange */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .info-label {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+    </style>
+</head>
+<body>
+<header>
+    <!-- Your header content here if needed -->
+</header>
+
+<div class="container">
+    <h1>Customer Account Details</h1>
+    <p class="info-label">Id: <span th:text="${customer.custID}"></span></p><br><br>
+    <p class="info-label">Name: <span th:text="${customer.custName}"></span></p><br><br>
+    <p class="info-label">Password: <span th:text="${customer.custPassword}"></span></p><br><br>
+    <p class="info-label">Email: <span th:text="${customer.custEmail}"></span></p><br><br>
+    <p class="info-label">Address: <span th:text="${customer.custAddress}"></span></p><br><br>
+    <p class="info-label">Phone Number: <span th:text="${customer.custPhoneNum}"></span></p><br><br>
+    <p>Back to <a href="customerhomepage.jsp">Home</a></p>
+</div>
+
+</body>
+</html>

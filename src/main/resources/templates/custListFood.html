@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Food List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            text-decoration: none;
+            padding: 5px 10px;
+            margin: 2px;
+            border-radius: 5px;
+            color: white;
+        }
+        .btn-info {
+            background-color: #17a2b8;
+        }
+        .btn-success {
+            background-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav>
+        <ul>
+            <li>
+                <a href="#" class="logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&amp;s" alt="Pet Clinic">
+                    <span class="nav-item">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{${request.contextPath}/custServlet(custID=${session.custID}, action='/custedit')}">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="customerhomepage.jsp">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-item">Home</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{${request.contextPath}/Logout}" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main">
+        <p>Customer ID: <span th:text="${customer.custID}"></span></p>
+        <p>Customer Name: <span th:text="${customer.custName}"></span></p>
+
+        <h1>Food List</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Weight (gram)</th>
+                    <th>Quantity Available</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="petfood : ${petfoods}">
+                    <td th:text="${petfood.inventoryID}"></td>
+                    <td th:text="${petfood.inventoryName}"></td>
+                    <td th:text="${petfood.inventoryBrand}"></td>
+                    <td th:text="${petfood.inventoryCategory}"></td>
+                    <td th:text="${petfood.inventoryPrice}"></td>
+                    <td th:text="${petfood.foodWeight}"></td>
+                    <td th:text="${petfood.inventoryQuantityExisting}"></td>
+                    <td><a class="btn btn-info" th:href="@{CustViewFoodController(inventoryID=${petfood.inventoryID})}">View</a></td>
+                    <td><a class="btn btn-success" th:href="@{createPurchaseController(inventoryID=${petfood.inventoryID}, custID=${customer.custID}, action='form')}">Purchase</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

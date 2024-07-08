@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Customer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 35%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-top:50px;
+            margin-bottom:20px;
+        }
+        fieldset {
+            border: none;
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .btn {
+            padding: 10px 20px 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #8FC3FF;
+            color: #000000;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #63A7F8;
+        }
+    </style>
+</head>
+<body>
+   
+    <h2>Edit Customer</h2>
+    <div class="container">
+        <form th:action="@{${#httpServletRequest.contextPath}/custupdate}" method="post">
+            <input type="hidden" name="custID" th:value="${customer.custID}">
+            <fieldset>
+                <label for="custName">Name:</label>
+                <input type="text" id="custName" name="custName" th:value="${customer.custName}" required>
+            </fieldset>
+            <fieldset>
+                <label for="custEmail">Email:</label>
+                <input type="email" id="custEmail" name="custEmail" th:value="${customer.custEmail}" required>
+            </fieldset>
+            <fieldset>
+                <label for="custPhoneNum">Phone Number:</label>
+                <input type="tel" id="custPhoneNum" name="custPhoneNum" th:value="${customer.custPhoneNum}" required>
+            </fieldset>
+            <fieldset>
+                <label for="custAddress">Address:</label>
+                <input type="text" id="custAddress" name="custAddress" th:value="${customer.custAddress}" required>
+            </fieldset>
+            <fieldset>
+                <label for="custPassword">Password:</label>
+                <input type="password" id="custPassword" name="custPassword" th:value="${customer.custPassword}" required>
+            </fieldset>
+            
+            <button type="submit" class="btn btn-success">Update</button>
+            <p>Back to <a href="customerhomepage.jsp">Home</a></p>
+        </form>
+    </div> 
+</body>
+</html>
