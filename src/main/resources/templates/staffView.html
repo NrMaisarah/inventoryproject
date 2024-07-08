@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Info</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar {
+            background-color: #ff8c00; /* Darker orange */
+        }
+        .navbar-brand {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        h1 {
+            color: #ff8c00; /* Darker orange */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .info-label {
+            font-weight: bold;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div>
+                <a th:href="@{${staff.staffRole == 'manager'} ? 'managerhomepage.jsp' : 'staffhomepage.jsp'}" class="navbar-brand">Back</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Staff Account Details</h1>
+        <p class="info-label">Id:</p> <span th:text="${staff.staffID}"></span><br><br>
+        <p class="info-label">Name:</p> <span th:text="${staff.staffName}"></span><br><br>
+        <p class="info-label">Role:</p> <span th:text="${staff.staffRole}"></span><br><br>
+        <p class="info-label">Email:</p> <span th:text="${staff.staffEmail}"></span><br><br>
+        <p class="info-label">Password:</p> <span th:text="${staff.staffPassword}"></span><br><br>
+    </div>
+</body>
+</html>
