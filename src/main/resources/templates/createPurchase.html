@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            width: 100%;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .col {
+            flex: 0 0 48%;
+            min-width: 400px;
+        }
+        .inputBox {
+            margin: 10px 0;
+        }
+        .inputBox span {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .inputBox input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .flex {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #a5baf2;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            background: #000000;
+        }
+        .title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .credit-cards {
+            margin-top: 5px;
+        }
+        .credit-cards img {
+            width: 50px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form th:action="@{/createPurchaseController}" method="post">
+            <div class="row">
+                <div class="col">
+                    <h3 class="title">PET FOOD INFORMATION</h3>
+                    <input type="hidden" name="inventoryID" th:value="${petfood.inventoryID}">
+                    <input type="hidden" name="custID" th:value="${session.custID}">
+                    <div class="inputBox">
+                        <span>Pet Food Name :</span>
+                        <input type="text" name="inventoryName" th:value="${petfood.inventoryName}" readonly>
+                    </div>
+                    <div class="inputBox">
+                        <span>Quantity to Purchase :</span>
+                        <input type="number" id="purchaseQuantity" name="purchaseQuantity" placeholder="Enter quantity" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>Price :</span>
+                        <input type="text" id="inventoryPrice" name="inventoryPrice" th:value="${petfood.inventoryPrice}" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3 class="title">CARD DETAILS</h3>
+                    <div class="inputBox">
+                        <span>Name On Card :</span>
+                        <input type="text" name="cardName" placeholder="RAHMAT BIN MOHD RAZALI" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>Credit Card Number :</span>
+                        <input type="text" name="cardNumber" placeholder="1111-2222-3333-4444" pattern="\d{4}-\d{4}-\d{4}-\d{4}" required>
+                        <div class="credit-cards">
+                            <img src="https://lofrev.net/wp-content/photos/2016/07/visa_logo_7.jpg" alt="Visa">
+                            <img src="https://logosmarcas.net/wp-content/uploads/2020/09/Mastercard-Simbolo.jpg" alt="MasterCard">
+                            <!-- Add other card logos as needed -->
+                        </div>
+                    </div>
+                    <div class="inputBox">
+                        <span>Expiration Date :</span>
+                        <input type="text" name="expDate" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>CVV :</span>
+                        <input type="text" name="cvv" placeholder="123" pattern="\d{3}" required>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Submit" class="submit-btn">
+        </form>
+    </div>
+
+    <script>
+        function updateTotalPrice() {
+            var quantity = document.getElementById('purchaseQuantity').value;
+            var pricePerUnit = document.getElementById('inventoryPrice').value;
+            var totalPrice = quantity * pricePerUnit;
+            document.getElementById('inventoryPrice').value = totalPrice.toFixed(2);
+        }
+    </script>
+</body>
+</html>
