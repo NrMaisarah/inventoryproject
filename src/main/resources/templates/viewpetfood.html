@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Inventory</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Import Google fonts */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #dfe9f5;
+            display: flex;
+            height: 140vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            height: auto;
+            background: #fff;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        nav {
+            width: 280px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        nav .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        nav .logo span {
+            font-weight: bold;
+            padding-left: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 20px 0;
+        }
+
+        nav ul li a {
+            color: rgb(85, 83, 83);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        nav ul li a i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        nav ul li a:hover {
+            background: #eee;
+        }
+
+        nav ul li .dropdown-content {
+            display: none;
+            flex-direction: column;
+        }
+
+        nav ul li:hover .dropdown-content {
+            display: flex;
+        }
+
+        nav ul li .dropdown-content a {
+            padding: 10px 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        nav ul li .dropdown-content a:hover {
+            background: #eee;
+        }
+
+        nav ul li .logout {
+            position: absolute;
+            bottom: 20px;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .form-container .info-group {
+            margin-bottom: 15px;
+        }
+
+        .form-container .info-group label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-container .info-group .info-value {
+            font-size: 16px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" class="logo">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s" alt="Pet Clinic"> 
+                        <span class="nav-item">Dashboard</span>
+                    </a>
+                </li>
+                <!-- Replace href with appropriate Thymeleaf expressions -->
+                <li>
+                    <a th:href="@{/staffServlet(staffID=${session.staffID}, action='view')}">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="staffhomepage.html">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-item">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/Logout}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="main">
+            <div class="form-container">
+                <h2>View Pet Food</h2>
+                <div class="info-group">
+                    <label>Id:</label>
+                    <div class="info-value" th:text="${inventoryID}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Name:</label>
+                    <div class="info-value" th:text="${inventoryName}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Brand:</label>
+                    <div class="info-value" th:text="${inventoryBrand}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Inventory Category:</label>
+                    <div class="info-value" th:text="${inventoryCategory}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Pet Food Type:</label>
+                    <div class="info-value" th:text="${foodType}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Price:</label>
+                    <div class="info-value" th:text="${inventoryPrice}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Food Weight (grams):</label>
+                    <div class="info-value" th:text="${foodWeight}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Quantity In:</label>
+                    <div class="info-value" th:text="${quantityIn}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Quantity Existing:</label>
+                    <div class="info-value" th:text="${inventoryQuantityExisting}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Reorder Point:</label>
+                    <div class="info-value" th:text="${inventoryReorderPoint}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
