@@ -1,55 +1,317 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Pet Food Information</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Import Google fonts */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #dfe9f5;
+            height: 100vh;
+            display: flex;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        nav {
+            position: relative;
+            top: 0;
+            bottom: 0;
+            height: 175vh;
+            left: 0;
+            background: #fff;
+            width: 280px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            display: flex;
+            margin: 10px 0 0 10px;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-weight: bold;
+            padding-left: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        a {
+            position: relative;
+            color: rgb(85, 83, 83);
+            font-size: 14px;
+            display: table;
+            width: 280px;
+            padding: 10px;
+        }
+
+        nav .fas {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            top: 14px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .nav-item {
+            position: relative;
+            top: 12px;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background: #eee;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 0;
+        }
+
+        /* Main Section */
+        .main {
+            position: relative;
+            padding: 20px;
+            width: calc(100% - 280px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 50px; /* Added top margin to lower the form */
+        }
+
+        .main-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .main-top h1 {
+            font-size: 24px;
+        }
+
+        .main-top i {
+            position: absolute;
+            right: 30px;
+            color: rgb(110, 109, 109);
+            cursor: pointer;
+        }
+
+        .main-skills {
+            display: flex;
+            flex: 1;
+            align-items: center;
+        }
+
+        .main-skills .card {
+            flex: 1;
+            height: 85%;
+            margin: 10px;
+            background: #fff;
+            text-align: center;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main-skills .card h3 {
+            margin: 10px;
+            text-transform: capitalize;
+        }
+
+        .main-skills .card button {
+            background: orangered;
+            color: #fff;
+            padding: 7px 15px;
+            border-radius: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .main-skills .card button:hover {
+            background: rgba(223, 70, 15, 0.856);
+        }
+.main-skills .card i {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+
+/* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            background-color: #f9f9f9;
+            min-width: 280px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown .nav-item::after {
+            content: '\25BE';
+            margin-left: 5px;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: 500;
+        }
+
+        form input[type="text"],
+        form input[type="number"],
+        form input[type="radio"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form input[type="radio"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        form input[type="submit"],
+        form input[type="reset"] {
+            background: orangered;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin: 10px 5px 0 0;
+        }
+
+        form input[type="submit"]:hover,
+        form input[type="reset"]:hover {
+            background: rgba(223, 70, 15, 0.856);
+        }
+    </style>
     
-    
+    <script>
+        // Mock function to get the staffID from session (for demonstration purposes)
+        function getStaffIDFromSession() {
+            // You would implement this to fetch the actual staffID, e.g., from a session storage or a cookie
+            return staffID; // Example staffID
+        }
+
+        // Ensure the staffID is set before form submission
+        window.onload = function() {
+            setStaffID();
+        }
+    </script>
 </head>
 
 <body>
-    <a href="index.html">Home</a> |
-    <a href="formpage.html">Pet Food</a>
-    <a href="ListFoodController">List Pet Food</a><br><br>
-    
-    <form action="createPetFoodController" method="post" >
-        <label for="inventoryName">Inventory Name:</label><br>
-        <input type="text" id="inventoryName" name="inventoryName" required><br>
-        
-        <label for="inventoryBrand">Inventory Brand:</label><br>
-        <input type="text" id="inventoryBrand" name="inventoryBrand" required><br>
-        
-        
-        <br>
-        
-        <label for="foodWeight">Food Weight(gram):</label><br>
-        <input type="number" id="foodWeight" name="foodWeight" required><br>
-        
-        <label for="inventoryCategory">Inventory Category:</label><br>
-        <label><input type="radio" name="inventoryCategory" value="Pet Food" required> Pet Food</label>
-       
-        <label><input type="radio" name="inventoryCategory" value="Pet Medicine" required> Pet Medicine</label>
-        <br>
-        
-        <label for="inventoryPrice">Inventory Price:</label><br>
-        <input type="number" id="inventoryPrice" name="inventoryPrice" step="0.01" required><br>
-        
-        <label for="quantityIn">Quantity In:</label><br>
-        <input type="number" id="quantityIn" name="quantityIn" required><br>
-        
-      
-        
-        <label for="inventoryQuantityExisting">Inventory Quantity Existing:</label><br>
-        <input type="number" id="inventoryQuantityExisting" name="inventoryQuantityExisting" required><br>
-        
-        <label for="reorderPoint">Inventory Reorder Point:</label><br>
-        <input type="number" id="reorderPoint" name="reorderPoint" required><br>
-        
-        <br>
-        <input type="submit" value="Submit">
-        <input type="reset" value="Reset">
-    </form>
-</body>
-</html>
+<div class="container">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s" alt="Pet Clinic"> 
+                    <span class="nav-item">Dashboard</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Profile</span>
+                </a></li>
+                <li><a href="staffhomepage.html">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-item">Home</span>
+                </a></li>
+                <li class="dropdown"><a href="#">
+                    <i class="fas fa-wallet"></i>
+                    <span class="nav-item">Inventory</span>
+                </a>
+                    <div class="dropdown-content">
+                        <a href="ListFoodController"><i class="fas fa-drumstick-bite"></i> Pet Food</a>
+                        <a href="ListMedicineController"><i class="fas fa-pills"></i> Pet Medicine</a>
+                    </div>
+                </li>
+                <li><a href="#" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Log out</span>
+                </a></li>
+            </ul>
+        </nav>
+
+        <div class="main">
+            <div class="form-container">
+                <h2>Create Pet Food</h2>
+                <form th:action="@{/createPetFoodController
