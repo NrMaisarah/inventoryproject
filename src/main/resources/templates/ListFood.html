@@ -1,299 +1,305 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Pet Food List</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+    <meta charset="UTF-8">
+    <title>Pet Food List</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
 
-    * {
-      margin: 0;
-      padding: 0;
-      outline: none;
-      border: none;
-      text-decoration: none;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
 
-    body {
-      background: #dfe9f5;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+        body {
+            background: #dfe9f5;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .container {
-      display: flex;
-      width: 100%;
-    }
+        .container {
+            display: flex;
+            width: 100%;
+        }
 
-    nav {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      background: #fff;
-      width: 280px;
-      overflow: hidden;
-      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-    }
+        nav {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            background: #fff;
+            width: 280px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
 
-    .logo {
-      text-align: center;
-      display: flex;
-      margin: 10px 0 0 10px;
-    }
+        .logo {
+            text-align: center;
+            display: flex;
+            margin: 10px 0 0 10px;
+        }
 
-    .logo img {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-    }
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
 
-    .logo span {
-      font-weight: bold;
-      padding-left: 15px;
-      font-size: 18px;
-      text-transform: uppercase;
-    }
+        .logo span {
+            font-weight: bold;
+            padding-left: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
 
-    a {
-      position: relative;
-      color: rgb(85, 83, 83);
-      font-size: 14px;
-      display: table;
-      width: 100%;
-      padding: 10px;
-    }
+        a {
+            position: relative;
+            color: rgb(85, 83, 83);
+            font-size: 14px;
+            display: table;
+            width: 100%;
+            padding: 10px;
+        }
 
-    nav .fas {
-      position: relative;
-      width: 70px;
-      height: 40px;
-      top: 14px;
-      font-size: 20px;
-      text-align: center;
-    }
+        nav .fas {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            top: 14px;
+            font-size: 20px;
+            text-align: center;
+        }
 
-    .nav-item {
-      position: relative;
-      top: 12px;
-      margin-left: 10px;
-    }
+        .nav-item {
+            position: relative;
+            top: 12px;
+            margin-left: 10px;
+        }
 
-    a:hover {
-      background: #eee;
-    }
+        a:hover {
+            background: #eee;
+        }
 
-    .logout {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-    }
+        .logout {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
 
-    .main {
-      margin-left: 280px;
-      padding: 20px;
-      flex-grow: 1;
-    }
+        .main {
+            margin-left: 280px;
+            padding: 20px;
+            flex-grow: 1;
+        }
 
-    .main-top {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      margin-bottom: 20px;
-      margin-top: 40px;
-      position: relative;
-    }
+        .main-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+            margin-top: 40px;
+            position: relative;
+        }
 
-    .main-top h1 {
-      font-size: 24px;
-    }
+        .main-top h1 {
+            font-size: 24px;
+        }
 
-    .main-top i {
-      position: absolute;
-      right: 30px;
-      color: rgb(110, 109, 109);
-      cursor: pointer;
-    }
+        .main-top i {
+            position: absolute;
+            right: 30px;
+            color: rgb(110, 109, 109);
+            cursor: pointer;
+        }
 
-    .inventory-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+        .inventory-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    .card {
-      flex: 1;
-      height: 300px;
-      margin: 10px;
-      background: #fff;
-      text-align: center;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 250px;
-    }
+        .card {
+            flex: 1;
+            height: 300px;
+            margin: 10px;
+            background: #fff;
+            text-align: center;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 250px;
+        }
 
-    .card h3 {
-      margin: 10px;
-      text-transform: capitalize;
-    }
+        .card h3 {
+            margin: 10px;
+            text-transform: capitalize;
+        }
 
-    .card button {
-      background: orangered;
-      color: #fff;
-      padding: 7px 15px;
-      border-radius: 10px;
-      margin: 5px 0;
-      cursor: pointer;
-    }
+        .card button {
+            background: orangered;
+            color: #fff;
+            padding: 7px 15px;
+            border-radius: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+        }
 
-    .card button:hover {
-      background: rgba(223, 70, 15, 0.856);
-    }
+        .card button:hover {
+            background: rgba(223, 70, 15, 0.856);
+        }
 
-    .card i {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
+        .card i {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
 
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      left: 0;
-      background-color: #f9f9f9;
-      min-width: 280px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-    }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            background-color: #f9f9f9;
+            min-width: 280px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
 
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
 
-    .dropdown-content a:hover {
-      background-color: #f1f1f1;
-    }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
 
-    .dropdown .nav-item::after {
-      content: '\25BE';
-      margin-left: 5px;
-    }
+        .dropdown .nav-item::after {
+            content: '\25BE';
+            margin-left: 5px;
+        }
 
-    .navbar {
-      background-color: #ff8c00; /* Darker orange */
-    }
+        .navbar {
+            background-color: #ff8c00; /* Darker orange */
+        }
 
-    .navbar-brand {
-      color: #ffffff;
-      font-weight: bold;
-    }
+        .navbar-brand {
+            color: #ffffff;
+            font-weight: bold;
+        }
 
-    .container {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: #ffffff;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-  </style>
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
+<div class="container">
     <nav>
-      <ul>
-        <li>
-          <a href="#" class="logo">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s" alt="Pet Clinic">
-            <span class="nav-item">Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a th:href="@{/staffServlet(staffID=${session.staffID}, action='view')}">
-            <i class="fas fa-user"></i>
-            <span class="nav-item">Profile</span>
-          </a>
-        </li>
-        <li>
-          <a th:href="@{/staffhomepage}">
-            <i class="fas fa-home"></i>
-            <span class="nav-item">Home</span>
-          </a>
-        </li>
-        <li>
-          <a th:href="@{/Logout}" class="logout">
-            <i class="fas fa-sign-out-alt"></i>
-            <span class="nav-item">Log out</span>
-          </a>
-        </li>
-      </ul>
+        <ul>
+            <li>
+                <a th:href="@{/}">
+                    <div class="logo">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s"
+                             alt="Pet Clinic">
+                        <span class="nav-item">Dashboard</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/staffServlet(staffID=${session.staffID}, action='view')}">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Profile</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/staffhomepage}">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-item">Home</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/Logout}" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Log out</span>
+                </a>
+            </li>
+        </ul>
     </nav>
-  </div>
-  <div class="main">
+</div>
+<div class="main">
     <h1>Food List</h1>
     <table class="table table-bordered">
-      <thead>
+        <thead>
         <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Brand</th>
-          <th>Category</th>
-          <th>Price</th>
-          <th>Weight (grams)</th>
-          <th>Quantity In</th>
-          <th colspan="3">Action</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Weight (grams)</th>
+            <th>Quantity In</th>
+            <th colspan="3">Action</th>
         </tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
+        <!-- Iterate over the list of pet foods and display each item's properties -->
         <tr th:each="petfood : ${petfoods}">
-          <td th:text="${petfood.inventoryID}">ID</td>
-          <td th:text="${petfood.inventoryName}">Name</td>
-          <td th:text="${petfood.inventoryBrand}">Brand</td>
-          <td th:text="${petfood.inventoryCategory}">Category</td>
-          <td th:text="'RM ' + ${petfood.inventoryPrice}">Price</td>
-          <td th:text="${petfood.foodWeight}">Weight</td>
-          <td th:text="${petfood.quantityIn}">Quantity</td>
-          <td><a class="btn btn-info" th:href="@{/viewPetFood(inventoryID=${petfood.inventoryID})}">View</a></td>
-          <td><a class="btn btn-primary" th:href="@{/updatePetFoodController(inventoryID=${petfood.inventoryID})}">Update</a></td>
-          <td><button class="btn btn-danger" th:id="${petfood.inventoryID}" th:onclick="'confirmation(' + ${petfood.inventoryID} + ')'">Delete</button></td>
+            <td th:text="${petfood.inventoryID}"></td>
+            <td th:text="${petfood.inventoryName}"></td>
+            <td th:text="${petfood.inventoryBrand}"></td>
+            <td th:text="${petfood.inventoryCategory}"></td>
+            <td th:text="'RM ' + ${petfood.inventoryPrice}"></td>
+            <td th:text="${petfood.foodWeight}"></td>
+            <td th:text="${petfood.quantityIn}"></td>
+            <td><a class="btn btn-info" th:href="@{/viewPetFood(inventoryID=${petfood.inventoryID})}">View</a></td>
+            <td><a class="btn btn-primary" th:href="@{/updatePetFoodController(inventoryID=${petfood.inventoryID})}">Update</a></td>
+            <td><button class="btn btn-danger" th:id="${petfood.inventoryID}" onclick="confirmation('${petfood.inventoryID}')">Delete</button></td>
         </tr>
-      </tbody>
+        </tbody>
     </table>
-  </div>
+</div>
 
-  <script th:inline="javascript">
+<script th:inline="javascript">
     function confirmation(id) {
-      var r = confirm("Are you sure you want to delete?");
-      if (r == true) {
-        window.location.href = /*[[${@{/deletePetFoodController(inventoryID=${id})}}]]*/ 'deletePetFoodController?inventoryID=' + id;
-        alert("Pet Food successfully deleted");
-      } else {
-        return false;
-      }
+        var r = confirm("Are you sure you want to delete?");
+        if (r) {
+            var staffID = /*[[@{${session.staffID}}]]*/ '';
+            location.href = 'deletePetFoodController?inventoryID=' + id + '&staffID=' + staffID;
+            alert("Pet Food successfully deleted");
+        } else {
+            return false;
+        }
     }
-  </script>
+</script>
+
 </body>
 </html>
