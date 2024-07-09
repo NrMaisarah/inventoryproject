@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Purchases</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style type="text/css">
+        #navbarNav {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<!-- Retrieve session attribute -->
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
+        <a class="navbar-brand" href="#">Klinik Haiwan Ikhtiari</a>
+        <div class="collapse navbar-collapse">
+            <div th:switch="${staffRole}">
+                <a th:case="manager" class="navbar-brand" href="managerhomepage.html">Home</a>
+                <a th:case="staff" class="navbar-brand" href="staffhomepage.html">Home</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<br>
+
+<div class="container">
+    <h3 class="text-center">List of Purchases</h3>
+    <hr>
+    <div class="container text-left">
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>CUSTOMER ID</th>
+                    <th>PRODUCT NAME</th>
+                    <th>BRAND</th>
+                    <th>CATEGORY</th>
+                    <th>QUANTITY PURCHASED</th>
+                    <th>TOTAL PRICE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="purchase : ${purchaseList}">
+                    <td th:text="${purchase.custID}"></td>
+                    <td th:text="${purchase.inventoryName}"></td>
+                    <td th:text="${purchase.inventoryBrand}"></td>
+                    <td th:text="${purchase.inventoryCategory}"></td>
+                    <td th:text="${purchase.purchaseQuantity}"></td>
+                    <td th:text="${purchase.totalPricePurchase}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
