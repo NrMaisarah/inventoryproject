@@ -1,73 +1,238 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="ISO-8859-1">
     <title>Food List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .btn {
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
             text-decoration: none;
-            padding: 5px 10px;
-            margin: 2px;
-            border-radius: 5px;
-            color: white;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
         }
-        .btn-info {
-            background-color: #17a2b8;
+
+        body {
+            background: #dfe9f5;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
         }
-        .btn-success {
-            background-color: #28a745;
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        nav {
+            background: #fff;
+            width: 280px;
+            height: 100vh;
+            overflow: auto;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            position: fixed;
+        }
+
+        .logo {
+            text-align: center;
+            display: flex;
+            margin: 10px 0 0 10px;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            font-weight: bold;
+            padding-left: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        a {
+            color: rgb(85, 83, 83);
+            font-size: 14px;
+            display: block;
+            padding: 10px;
+            width: 100%;
+        }
+
+        nav .fas {
+            width: 70px;
+            height: 40px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .nav-item {
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background: #eee;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .main {
+            margin-left: 280px;
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .main-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .main-top h1 {
+            font-size: 24px;
+        }
+
+        .main-top i {
+            position: absolute;
+            right: 30px;
+            color: rgb(110, 109, 109);
+            cursor: pointer;
+        }
+
+        .inventory-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            flex: 1;
+            height: 300px;
+            margin: 10px;
+            background: #fff;
+            text-align: center;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 250px;
+        }
+
+        .card h3 {
+            margin: 10px;
+            text-transform: capitalize;
+        }
+
+        .card button {
+            background: orangered;
+            color: #fff;
+            padding: 7px 15px;
+            border-radius: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background: rgba(223, 70, 15, 0.856);
+        }
+
+        .card i {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            background-color: #f9f9f9;
+            min-width: 280px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown .nav-item::after {
+            content: '\25BE';
+            margin-left: 5px;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <nav>
-        <ul>
-            <li>
-                <a href="#" class="logo">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&amp;s" alt="Pet Clinic">
-                    <span class="nav-item">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{${request.contextPath}/custServlet(custID=${session.custID}, action='/custedit')}">
-                    <i class="fas fa-user"></i>
-                    <span class="nav-item">Profile</span>
-                </a>
-            </li>
-            <li>
-                <a href="customerhomepage.jsp">
-                    <i class="fas fa-home"></i>
-                    <span class="nav-item">Home</span>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{${request.contextPath}/Logout}" class="logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span class="nav-item">Log out</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" class="logo">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s" alt="Pet Clinic">
+                        <span class="nav-item">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/custServlet(custID=${custID}, action='/custedit')}">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/customerhomepage}">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-item">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/Logout}" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-    <div class="main">
-        <p>Customer ID: <span th:text="${customer.custID}"></span></p>
-        <p>Customer Name: <span th:text="${customer.custName}"></span></p>
+        <div class="main">
+            <p th:text="'Customer ID: ' + ${customer.custID}"></p>
+            <p th:text="'Customer Name: ' + ${customer.custName}"></p>
 
-        <h1>Food List</h1>
-        <table border="1">
-            <thead>
+            <h1>Food List</h1>
+            <table border="1">
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
@@ -78,8 +243,7 @@
                     <th>Quantity Available</th>
                     <th colspan="2">Action</th>
                 </tr>
-            </thead>
-            <tbody>
+
                 <tr th:each="petfood : ${petfoods}">
                     <td th:text="${petfood.inventoryID}"></td>
                     <td th:text="${petfood.inventoryName}"></td>
@@ -88,12 +252,15 @@
                     <td th:text="${petfood.inventoryPrice}"></td>
                     <td th:text="${petfood.foodWeight}"></td>
                     <td th:text="${petfood.inventoryQuantityExisting}"></td>
-                    <td><a class="btn btn-info" th:href="@{CustViewFoodController(inventoryID=${petfood.inventoryID})}">View</a></td>
-                    <td><a class="btn btn-success" th:href="@{createPurchaseController(inventoryID=${petfood.inventoryID}, custID=${customer.custID}, action='form')}">Purchase</a></td>
+                    <td>
+                        <a class="btn btn-info" th:href="@{/CustViewFoodController(inventoryID=${petfood.inventoryID})}">View</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-success" th:href="@{/createPurchaseController(inventoryID=${petfood.inventoryID}, custID=${customer.custID}, action='form')}">Purchase</a>
+                    </td>
                 </tr>
-            </tbody>
-        </table>
+            </table>
+        </div>
     </div>
-</div>
 </body>
 </html>

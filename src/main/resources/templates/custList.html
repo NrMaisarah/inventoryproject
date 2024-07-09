@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Customers</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
+        <div>
+            <a th:if="${account == 'manager'}" th:href="@{/managerhomepage}" class="navbar-brand">Back</a>
+            <a th:if="${account == 'staff'}" th:href="@{/staffhomepage}" class="navbar-brand">Back</a>
+        </div>
+    </nav>
+</header>
+<br>
+
+<div class="container">
+    <h3 class="text-center">List of Customers</h3>
+    <hr>
+    <div class="container text-left">
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Password</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="customer : ${listCustomer}">
+                    <td th:text="${customer.custID}"></td>
+                    <td th:text="${customer.custName}"></td>
+                    <td th:text="${customer.custPhoneNum}"></td>
+                    <td th:text="${customer.custEmail}"></td>
+                    <td th:text="${customer.custAddress}"></td>
+                    <td th:text="${customer.custPassword}"></td>
+                    <td>
+                        <a th:href="@{/custedit(custID=${customer.custID})}" class="btn btn-primary btn-sm mr-2">Edit</a><br><br>
+                        <a th:href="@{/custdelete(custID=${customer.custID})}" th:id="${customer.custID}" class="btn btn-danger btn-sm mr-2" th:onclick="'return confirmation(' + ${customer.custID} + ')'" onclick="return confirmation('${customer.custID}')">Delete</a><br><br>
+                        <a th:href="@{/custview(custID=${customer.custID})}" class="btn btn-info btn-sm">View</a><br><br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function confirmation(custID) {
+        var r = confirm("Are you sure you want to delete?");
+        if (r == true) {
+            location.href = '/custServlet?action=custdelete&custID=' + custID;
+            alert("Account successfully deleted");
+        } else {
+            return false;
+        }
+    }
+</script>
+
+</body>
+</html>
