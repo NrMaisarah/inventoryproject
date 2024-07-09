@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Edit Customer</title>
@@ -21,8 +21,8 @@
         h2 {
             text-align: center;
             color: #333;
-            margin-top:50px;
-            margin-bottom:20px;
+            margin-top: 50px;
+            margin-bottom: 20px;
         }
         fieldset {
             border: none;
@@ -63,32 +63,32 @@
    
     <h2>Edit Customer</h2>
     <div class="container">
-        <form th:action="@{${#httpServletRequest.contextPath}/custupdate}" method="post">
-            <input type="hidden" name="custID" th:value="${customer.custID}">
+        <form th:action="@{${pageContext.request.contextPath}/custupdate}" method="post">
+            <input type="hidden" th:name="custID" th:value="${customer.custID}">
             <fieldset>
                 <label for="custName">Name:</label>
-                <input type="text" id="custName" name="custName" th:value="${customer.custName}" required>
+                <input type="text" id="custName" th:name="custName" th:value="${customer.custName}" required>
             </fieldset>
             <fieldset>
                 <label for="custEmail">Email:</label>
-                <input type="email" id="custEmail" name="custEmail" th:value="${customer.custEmail}" required>
+                <input type="email" id="custEmail" th:name="custEmail" th:value="${customer.custEmail}" required>
             </fieldset>
             <fieldset>
                 <label for="custPhoneNum">Phone Number:</label>
-                <input type="tel" id="custPhoneNum" name="custPhoneNum" th:value="${customer.custPhoneNum}" required>
+                <input type="tel" id="custPhoneNum" th:name="custPhoneNum" th:value="${customer.custPhoneNum}" required>
             </fieldset>
             <fieldset>
                 <label for="custAddress">Address:</label>
-                <input type="text" id="custAddress" name="custAddress" th:value="${customer.custAddress}" required>
+                <input type="text" id="custAddress" th:name="custAddress" th:value="${customer.custAddress}" required>
             </fieldset>
             <fieldset>
                 <label for="custPassword">Password:</label>
-                <input type="password" id="custPassword" name="custPassword" th:value="${customer.custPassword}" required>
+                <input type="password" id="custPassword" th:name="custPassword" th:value="${customer.custPassword}" required>
             </fieldset>
             
             <button type="submit" class="btn btn-success">Update</button>
             <p>Back to <a href="customerhomepage.jsp">Home</a></p>
         </form>
-    </div> 
+    </div>
 </body>
 </html>
