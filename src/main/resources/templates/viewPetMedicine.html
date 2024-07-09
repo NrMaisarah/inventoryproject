@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Inventory</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Import Google fonts and other styles */
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s" alt="Pet Clinic"> 
+                    <span class="nav-item">Dashboard</span>
+                </a></li>
+                <li><a th:href="@{/staffServlet(staffID=${session.staffID}, action='view')}">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Profile</span>
+                </a></li>
+                <li><a href="staffhomepage.html">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-item">Home</span>
+                </a></li>
+                <li><a th:href="@{/Logout}" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Log out</span>
+                </a></li>
+            </ul>
+        </nav>
+        <div class="main">
+            <div class="form-container">
+                <h2>View Pet Medicine</h2>
+                <div class="info-group">
+                    <label>Inventory ID:</label>
+                    <div class="info-value" th:text="${inventoryID}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Name:</label>
+                    <div class="info-value" th:text="${inventoryName}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Brand:</label>
+                    <div class="info-value" th:text="${inventoryBrand}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Inventory Category:</label>
+                    <div class="info-value" th:text="${inventoryCategory}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Price:</label>
+                    <div class="info-value" th:text="${inventoryPrice}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Quantity In:</label>
+                    <div class="info-value" th:text="${quantityIn}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Quantity Existing:</label>
+                    <div class="info-value" th:text="${inventoryQuantityExisting}"></div>
+                </div>
+                <div class="info-group">
+                    <label>Reorder Point:</label>
+                    <div class="info-value" th:text="${inventoryReorderPoint}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
