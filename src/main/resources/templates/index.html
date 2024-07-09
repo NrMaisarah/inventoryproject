@@ -131,7 +131,7 @@
             color: #f8f9fa; /* Light text on hover */
         }
     </style>
-    <script th:inline="javascript">
+    <script>
         function navigate() {
             var dropdown = document.getElementById("inventory");
             var selectedValue = dropdown.options[dropdown.selectedIndex].value;
@@ -145,27 +145,27 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-        <a href="index.html" class="navbar-brand">Klinik Haiwan Ikhtiari</a>
+        <a th:href="@{/}" class="navbar-brand">Klinik Haiwan Ikhtiari</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link active">Home</a>
+                    <a th:href="@{/}" class="nav-link active">Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Products
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" th:href="@{/viewpfcustomercontroller}">Pet Food</a></li>
-                        <li><a class="dropdown-item" th:href="@{/viewpmcustomercontroller}">Pet Medicine</a></li>
+                        <li><a th:href="@{/viewpfcustomercontroller}" class="dropdown-item">Pet Food</a></li>
+                        <li><a th:href="@{/viewpmcustomercontroller}" class="dropdown-item">Pet Medicine</a></li>
                     </ul>
                 </li>
-                
+
                 <li class="nav-item">
-                    <form class="d-flex" action="/search" method="get">
+                    <form class="d-flex" th:action="@{/search}" method="get">
                         <input type="text" name="query" class="form-control" placeholder="Search...">
                         <button type="submit" class="btn btn-outline-primary ms-2">Search</button>
                     </form>
@@ -195,7 +195,7 @@
     <p>Klinik Haiwan Ikhtiari located in Merlimau, Melaka. We have been operating for five years. We offer services including health consultations and treatments for pets, and we also sell pet needs that are recommended and affordable.</p>
     <div class="row">
         <div class="col-lg-6">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s" alt="Pet Clinic" class="img-fluid">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&amp;s" alt="Pet Clinic" class="img-fluid">
         </div>
         <div class="col-lg-6">
             <p>Delivering specialized services focused on pet health since no other veterinary clinic at Merlimau other than the Department of Veterinary Services. Our clinic is very dedicated to delivering veterinary services with a focus on companion animals.</p>
@@ -203,8 +203,9 @@
     </div>
 </div>
 <!-- About End -->
-  
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl6ypsHfdE61yZzln3fxhRO6HcWV8QYgJ96aF5wRv5rJA81IU1am6nLY9H17" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVJB6mMX12QkFZ16yTADvOsRsbGA2e5im2c4ehDOww9U4rZ5hK9I9e5I4uN5Ir6b" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVJB6mMX12QkFZ16yTADvOsRsbGA2e5im2c4ehDOww9U4rZ5hK9I9e
+
 </body>
 </html>
