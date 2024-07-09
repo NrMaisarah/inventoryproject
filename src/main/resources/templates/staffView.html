@@ -40,7 +40,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark">
+        <nav class="navbar navbar-expand-md navbar-dark" th:classappend="${staff.staffRole == 'manager'} ? 'bg-dark' : 'bg-primary'">
             <div>
                 <a th:href="@{${staff.staffRole == 'manager'} ? 'managerhomepage.jsp' : 'staffhomepage.jsp'}" class="navbar-brand">Back</a>
             </div>
@@ -48,11 +48,12 @@
     </header>
     <div class="container">
         <h1>Staff Account Details</h1>
-        <p class="info-label">Id:</p> <span th:text="${staff.staffID}"></span><br><br>
-        <p class="info-label">Name:</p> <span th:text="${staff.staffName}"></span><br><br>
-        <p class="info-label">Role:</p> <span th:text="${staff.staffRole}"></span><br><br>
-        <p class="info-label">Email:</p> <span th:text="${staff.staffEmail}"></span><br><br>
-        <p class="info-label">Password:</p> <span th:text="${staff.staffPassword}"></span><br><br>
+        <p class="info-label">Id: <span th:text="${staff.staffID}"></span></p><br><br>
+        <p class="info-label">Name: <span th:text="${staff.staffName}"></span></p><br><br>
+        <p class="info-label">Manager Name: <span th:text="${staff.managerName}"></span></p><br><br>
+        <p class="info-label">Role: <span th:text="${staff.staffRole}"></span></p><br><br>
+        <p class="info-label">Email: <span th:text="${staff.staffEmail}"></span></p><br><br>
+        <p class="info-label">Password: <span th:text="${staff.staffPassword}"></span></p><br><br>
     </div>
 </body>
 </html>

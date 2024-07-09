@@ -21,7 +21,7 @@
         body {
             background: #dfe9f5;
             display: flex;
-            height: 100vh;
+            height: 180vh;
             justify-content: center;
             align-items: center;
         }
@@ -29,7 +29,7 @@
         .container {
             display: flex;
             width: 100%;
-            height: 100vh;
+            height: 175vh;
             background: #fff;
             box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
@@ -112,7 +112,6 @@
         nav ul li .logout {
             position: absolute;
             bottom: 20px;
-            width: calc(100% - 40px);
         }
 
         .main {
@@ -184,13 +183,13 @@
                 <span>Dashboard</span>
             </div>
             <ul>
-                <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a th:href="@{/profile}"><i class="fas fa-user"></i> Profile</a></li>
                 <li><a th:href="@{/staffhomepage}"><i class="fas fa-home"></i> Home</a></li>
                 <li class="dropdown">
                     <a href="#"><i class="fas fa-wallet"></i> Inventory</a>
                     <div class="dropdown-content">
-                        <a th:href="@{/ListFood}"><i class="fas fa-drumstick-bite"></i> Pet Food</a>
-                        <a th:href="@{/ListMedicine}"><i class="fas fa-pills"></i> Pet Medicine</a>
+                        <a th:href="@{/listFood}"><i class="fas fa-drumstick-bite"></i> Pet Food</a>
+                        <a th:href="@{/listMedicine}"><i class="fas fa-pills"></i> Pet Medicine</a>
                     </div>
                 </li>
                 <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
@@ -199,35 +198,35 @@
         <div class="main">
             <div class="form-container">
                 <h2>Update Pet Medicine</h2>
-                <form action="updatePetMedicineController" method="post">
+                <form action="#" th:action="@{/updatePetMedicineController}" method="post">
                     <label for="inventoryID">Inventory ID:</label>
-                    <input type="text" name="inventoryID" th:value="${petmedicine.inventoryID}" size="50" readonly><br>
-
+                    <input type="text" id="inventoryID" name="inventoryID" th:value="${petmedicine.inventoryID}" size="50" readonly>
+                    
                     <label for="inventoryName">Name:</label>
-                    <input type="text" name="inventoryName" th:value="${petmedicine.inventoryName}" size="50"><br>
-
+                    <input type="text" id="inventoryName" name="inventoryName" th:value="${petmedicine.inventoryName}" size="50">
+                    
                     <label for="inventoryBrand">Brand:</label>
-                    <input type="text" name="inventoryBrand" th:value="${petmedicine.inventoryBrand}" size="50"><br>
-
+                    <input type="text" id="inventoryBrand" name="inventoryBrand" th:value="${petmedicine.inventoryBrand}" size="50">
+                    
                     <label for="inventoryCategory">Category:</label>
-                    <input type="text" name="inventoryCategory" th:value="${petmedicine.inventoryCategory}" size="50"><br>
-
+                    <input type="text" id="inventoryCategory" name="inventoryCategory" th:value="${petmedicine.inventoryCategory}" size="50">
+                    
                     <label for="inventoryPrice">Price:</label>
-                    <input type="text" name="inventoryPrice" th:value="${petmedicine.inventoryPrice}" step="0.01"><br>
-
+                    <input type="text" id="inventoryPrice" name="inventoryPrice" th:value="${petmedicine.inventoryPrice}" step="0.01">
+                    
                     <label for="quantityIn">Quantity In:</label>
-                    <input type="number" name="quantityIn" th:value="${petmedicine.quantityIn}"><br>
-
+                    <input type="number" id="quantityIn" name="quantityIn" th:value="${petmedicine.quantityIn}">
+                    
                     <label for="inventoryQuantityExisting">Inventory Quantity Existing:</label>
-                    <input type="number" name="inventoryQuantityExisting" th:value="${petmedicine.inventoryQuantityExisting}" readonly><br>
-
+                    <input type="number" id="inventoryQuantityExisting" name="inventoryQuantityExisting" th:value="${petmedicine.inventoryQuantityExisting}" readonly>
+                    
                     <label for="inventoryReorderPoint">Reorder Point:</label>
-                    <input type="number" name="inventoryReorderPoint" th:value="${petmedicine.inventoryReorderPoint}" readonly><br>
-
-                    <br><br>
+                    <input type="number" id="inventoryReorderPoint" name="inventoryReorderPoint" th:value="${petmedicine.inventoryReorderPoint}" readonly>
+                    
                     <input type="submit" value="Submit">
                     <input type="reset" value="Reset">
                 </form>
+                <p th:if="${staffRole != null}">Staff Role: <span th:text="${staffRole}"></span></p>
             </div>
         </div>
     </div>
