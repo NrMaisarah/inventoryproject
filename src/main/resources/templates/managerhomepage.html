@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Klinik Haiwan Ikhtiari</title>
@@ -118,13 +118,6 @@
             font-size: 24px;
         }
 
-        .main-top i {
-            position: absolute;
-            right: 30px;
-            color: rgb(110, 109, 109);
-            cursor: pointer;
-        }
-
         .main-skills {
             display: flex;
             flex: 1;
@@ -210,36 +203,26 @@
 <div class="container">
     <nav>
         <ul>
-            <li>
-                <a href="#" class="logo">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s" alt="Pet Clinic">
-                    <span class="nav-item">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{${'staffServlet?staffID=' + session.staffID + '&action=edit'}}">
-                    <i class="fas fa-user"></i>
-                    <span class="nav-item">Profile</span>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{${'staffServlet?staffID=' + session.staffID + '&action=view'}}">
-                    <i class="fas fa-user"></i>
-                    <span class="nav-item">View Account</span>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{managerhomepage}">
-                    <i class="fas fa-home"></i>
-                    <span class="nav-item">Home</span>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{${'Logout'}}" class="logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span class="nav-item">Log out</span>
-                </a>
-            </li>
+            <li><a href="#" class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&amp;s" alt="Pet Clinic">
+                <span class="nav-item">Dashboard</span>
+            </a></li>
+            <li><a th:href="@{${'staffServlet'} + '?staffID=' + ${staffID} + '&amp;action=edit'}">
+                <i class="fas fa-user"></i>
+                <span class="nav-item">Profile</span>
+            </a></li>
+            <li><a th:href="@{${'staffServlet'} + '?staffID=' + ${staffID} + '&amp;action=view'}">
+                <i class="fas fa-user"></i>
+                <span class="nav-item">View Account</span>
+            </a></li>
+            <li><a href="managerhomepage.jsp">
+                <i class="fas fa-home"></i>
+                <span class="nav-item">Home</span>
+            </a></li>
+            <li><a th:href="@{${'Logout'}}" class="logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-item">Log out</span>
+            </a></li>
         </ul>
     </nav>
 
@@ -251,24 +234,24 @@
             <div class="card">
                 <i class="fas fa-drumstick-bite"></i>
                 <h3>Pet Food</h3>
-                <button th:onclick="|window.location.href='@{${'createPetFood.html?staffID=' + session.staffID}}'|">Create New Pet Food</button>
-                <button th:onclick="|window.location.href='@{${'ListFoodController?staffID=' + session.staffID}}'|">List of Pet Food</button>
+                <button th:onclick="|window.location.href='${{#request.getContextPath()}}/createPetFood.html?staffID=${{staffID}}'|">Create New Pet Food</button>
+                <button th:onclick="|window.location.href='${{#request.getContextPath()}}/ListFoodController?staffID=${{staffID}}'|">List of Pet Food</button>
             </div>
             <div class="card">
                 <i class="fas fa-pills"></i>
                 <h3>Pet Medicine</h3>
-                <button th:onclick="|window.location.href='@{${'createPetMedicine.html'}}'|">Create New Pet Medicine</button>
-                <button th:onclick="|window.location.href='@{${'ListMedicineController?staffID=' + session.staffID}}'|">List of Pet Medicine</button>
+                <button th:onclick="|window.location.href='${{#request.getContextPath()}}/createPetMedicine.html'|">Create New Pet Medicine</button>
+                <button th:onclick="|window.location.href='${{#request.getContextPath()}}/ListMedicineController?staffID=${{staffID}}'|">List of Pet Medicine</button>
             </div>
             <div class="card">
                 <i class="fas fa-user"></i>
                 <h3>Account</h3>
-                <button th:onclick="|window.location.href='@{${'staffServlet?staffID=' + session.staffID + '&action=list&account=manager'}}'|">List Staff Account</button>
+                <button th:onclick="|window.location.href='${{#request.getContextPath()}}/staffServlet?staffID=${{staffID}}&amp;action=list&amp;account=manager'|">List Staff Account</button>
             </div>
             <div class="card">
                 <i class="fas fa-dollar-sign"></i>
                 <h3>Purchase</h3>
-                <button th:onclick="|window.location.href='@{${'purchaseList.jsp'}}'|">View Customer Purchase List</button>
+                <button th:onclick="|window.location.href='${{#request.getContextPath()}}/listPurchaseController?staffID=${{staffID}}'|">View Customer Purchase List</button>
             </div>
         </div>
     </section>
