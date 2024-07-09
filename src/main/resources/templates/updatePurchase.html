@@ -39,7 +39,7 @@
 <body>
     <h1 style="text-align: center;">Update Billing Address</h1>
     <div class="form-container">
-        <form action="updatePurchaseController" method="post">
+        <form action="#" th:action="@{/updatePurchaseController}" method="post">
             <input type="hidden" name="purchaseID" th:value="${purchase.purchaseID}">
             
             <label for="custName">Name:</label>
@@ -55,7 +55,7 @@
             <input type="text" id="city" name="city" th:value="${purchase.city}">
             
             <label for="states">State:</label>
-            <input type="text" id="states" name="states" th:value="${purchase.states}">
+            <input type="text" id="states" name="states" th:value="${purchase.state}">
             
             <label for="zip">Zip:</label>
             <input type="text" id="zip" name="zip" th:value="${purchase.zip}">
