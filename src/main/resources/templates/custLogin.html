@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="ISO-8859-1">
     <title>Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
         }
+
         .container {
             width: 50%;
             margin: 50px auto;
@@ -17,16 +18,20 @@
             border-radius: 10px;
             text-align: center;
         }
+
         h1 {
             color: #333;
         }
+
         table {
             width: 100%;
             margin: 20px 0;
         }
+
         td {
             padding: 10px;
         }
+
         input[type="text"], input[type="password"] {
             width: 100%;
             padding: 8px;
@@ -34,6 +39,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+
         input[type="submit"] {
             background-color: #004080;
             color: white;
@@ -44,6 +50,7 @@
             font-size: 16px;
             margin-top: 20px;
         }
+
         input[type="submit"]:hover {
             background-color: #002040;
         }
@@ -52,24 +59,25 @@
 <body>
 <div class="container">
     <h1>Customer Login Form</h1>
-    <form action="#" th:action="@{${request.contextPath}/custServlet}" method="post">
+    <form action="/custServlet" method="post">
         <input type="hidden" name="action" value="login">
         <input type="hidden" name="custID" th:value="${customer.custID}">
         <table>
             <tr>
                 <td>Email :</td>
-                <td><input type="text" name="custEmail" th:field="${customer.custEmail}" /></td>
+                <td><input type="text" name="custEmail" /></td>
             </tr>
             <tr>
                 <td>Password :</td>
                 <td><input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,20}$"
                            placeholder="6-20 characters, an uppercase, a lowercase, a number, and a symbol"
-                           name="custPassword" th:field="${customer.custPassword}" /></td>
+                           name="custPassword" /></td>
             </tr>
         </table>
         <input type="submit" value="Login">
     </form>
     <p>Don't have an account? <a href="custForm.jsp">Click here</a></p>
+    <p>Back to <a href="index.html">Home</a></p>
 </div>
 </body>
 </html>
