@@ -307,9 +307,34 @@
             <div class="form-container">
                 <h2>Create Pet Medicine</h2>
                 <form th:action="@{/createPetMedicineController}" method="post" onsubmit="setStaffID()">
-                    <input type="hidden" id="staffID" name="staffID" th:value="${staffID}">
-                    <label for="inventoryName">Inventory Name:</label>
+                    <input type = "hidden" id = "staffID" name = staffID value = "${staffID}">
+                     <label for="inventoryName">Inventory Name:</label>
                     <input type="text" id="inventoryName" name="inventoryName" required>
-                    
-                    <label for="inventoryBrand">Inventory Brand:</label>
-                    <
+
+<label for="inventoryBrand">Inventory Brand:</label>
+                    <input type="text" id="inventoryBrand" name="inventoryBrand" required>
+
+                    <label for="inventoryCategory">Inventory Category:</label>
+                    <label><input type="radio" name="inventoryCategory" value="Pet Food" required> Pet Food</label>
+                    <label><input type="radio" name="inventoryCategory" value="Pet Medicine" required> Pet Medicine</label>
+
+                    <label for="inventoryPrice">Inventory Price:</label>
+                    <input type="number" id="inventoryPrice" name="inventoryPrice" step="0.01" required>
+
+                    <label for="quantityIn">Quantity In:</label>
+                    <input type="number" id="quantityIn" name="quantityIn" required>
+
+                    <label for="inventoryQuantityExisting">Inventory Quantity Existing:</label>
+                    <input type="number" id="inventoryQuantityExisting" name="inventoryQuantityExisting" required>
+
+                    <label for="inventoryReorderPoint">Inventory Reorder Point:</label>
+                    <input type="number" id="inventoryReorderPoint" name="inventoryReorderPoint" required>
+
+                    <input type="submit" value="Submit">
+                    <input type="reset" value="Reset">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
