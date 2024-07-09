@@ -1,94 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Purchase Receipt</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <style>
-        .receipt-container {
-            width: 50%;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-        }
-        .receipt-container h1 {
-            color: #333;
-        }
-        .receipt-container .detail {
-            margin-bottom: 15px;
-        }
-        .receipt-container label {
-            font-weight: bold;
-        }
-        .receipt-container p {
-            margin: 5px 0;
-        }
-        .receipt-container button {
-            padding: 10px 20px;
-            background-color: #474fa0;
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            text-align: center;
-            margin-top: 10px;
-        }
-        .receipt-container button:hover {
-            background-color: var(--main-color);
+    <meta charset="UTF-8">
+    <title>List of Purchases</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style type="text/css">
+        #navbarNav {
+            height: 100%;
         }
     </style>
 </head>
-<body class="global-styles">
+<body>
+<!-- Retrieve session attribute -->
+<div th:fragment="navbar">
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
+        <a class="navbar-brand" href="#">Klinik Haiwan Ikhtiari</a>
+        <div class="collapse navbar-collapse">
+            <div th:switch="${staffRole}">
+                <a th:case="manager" class="navbar-brand" href="managerhomepage.html">Home</a>
+                <a th:case="staff" class="navbar-brand" href="staffhomepage.html">Home</a>
+            </div>
+        </div>
+    </nav>
+</div>
 
-    <header>
-        <a href="#" class="logo"><img src="image/logo.png" alt=""></a>
-        <div class="bx bx-menu" id="menu-icon"></div>
-        <ul class="navbar">
-            <li><a th:href="@{/index.html#home}">Home</a></li>
-            <li><a th:href="@{/index.html#products}">Products</a></li>
-            <li><a th:href="@{/index.html#services}">Services</a></li>
-            <li><a th:href="@{/index.html#about}">About</a></li>
-            <li><a th:href="@{/index.html#contact}">Contact</a></li>
-        </ul>
-        <div class="header-btn">
-            <a th:href="@{/signup.html}" class="sign-up">Sign Up</a>
-            <a th:href="@{/login.html}" class="sign-up">Log In</a>
-        </div>
-    </header><br><br><br>
-    <section class="receipt-container">
-        <h1>Purchase Receipt</h1>
-        <div th:if="${purchase != null}">
-            <div class="detail">
-                <label>Customer ID:</label>
-                <p th:text="${purchase.custID}"></p>
-            </div>
-            <div class="detail">
-                <label>Product Name:</label>
-                <p th:text="${purchase.inventoryName}"></p>
-            </div>
-            <div class="detail">
-                <label>Brand:</label>
-                <p th:text="${purchase.inventoryBrand}"></p>
-            </div>
-            <div class="detail">
-                <label>Category:</label>
-                <p th:text="${purchase.inventoryCategory}"></p>
-            </div>
-            <div class="detail">
-                <label>Quantity Purchased:</label>
-                <p th:text="${purchase.purchaseQuantity}"></p>
-            </div>
-            <div class="detail">
-                <label>Total Price:</label>
-                <p>RM<span th:text="${purchase.totalPricePurchase}"></span></p>
-            </div>
-        </div>
-        <div class="clearfix">
-            <button type="button" th:onclick="'location.href=' + @{/customerhomepage}">Go to Home</button>
-        </div>
-    </section>
-    <footer class="footer"></footer>
+<br>
+
+<div class="container">
+    <h3 class="text-center">List of Purchases</h3>
+    <hr>
+    <div class="container text-left">
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>CUSTOMER ID</th>
+                    <th>PRODUCT NAME</th>
+                    <th>BRAND</th>
+                    <th>CATEGORY</th>
+                    <th>QUANTITY PURCHASED</th>
+                    <th>TOTAL PRICE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="purchase : ${purchaseList}">
+                    <td th:text="${purchase.custID}"></td>
+                    <td th:text="${purchase.inventoryName}"></td>
+                    <td th:text="${purchase.inventoryBrand}"></td>
+                    <td th:text="${purchase.inventoryCategory}"></td>
+                    <td th:text="${purchase.purchaseQuantity}"></td>
+                    <td th:text="${purchase.totalPricePurchase}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 </body>
 </html>
