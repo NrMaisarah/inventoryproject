@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <title>Medicine List</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
 
@@ -199,40 +201,62 @@
             content: '\25BE';
             margin-left: 5px;
         }
+
+        .navbar {
+            background-color: #ff8c00; /* Darker orange */
+        }
+
+        .navbar-brand {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <nav>
         <ul>
-            <li><a href="#" class="logo">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&s" alt="Pet Clinic">
-                <span class="nav-item">Dashboard</span>
-            </a></li>
-
-            <li><a th:href="@{/staffhomepage}">
-                <i class="fas fa-home"></i>
-                <span class="nav-item">Home</span>
-            </a></li>
-            <li class="dropdown"><a href="#">
-                <i class="fas fa-wallet"></i>
-                <span class="nav-item">Inventory</span>
-            </a>
-                <div class="dropdown-content">
-                    <a th:href="@{/ListFoodController(staffID=${staffID})}"><i class="fas fa-drumstick-bite"></i> Pet Food</a>
-                    <a th:href="@{/ListMedicineController(staffID=${staffID})}"><i class="fas fa-pills"></i> Pet Medicine</a>
-                </div>
+            <li>
+                <a href="#" class="logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHqdmrNQXQO6ekMC98zyENVwkWXV3MdzLYyA&amp;s"
+                         alt="Pet Clinic">
+                    <span class="nav-item">Dashboard</span>
+                </a>
             </li>
-            <li><a th:href="@{/Logout}" class="logout">
-                <i class="fas fa-sign-out-alt"></i>
-                <span class="nav-item">Log out</span>
-            </a></li>
+            <li>
+                <a th:href="@{${#httpServletRequest.contextPath}} + '/staffServlet?staffID=' + ${staffID} + '&amp;action=view'">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="staffhomepage.jsp">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-item">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="@{${#httpServletRequest.contextPath}} + '/Logout'" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Log out</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </div>
 <div class="main">
     <h1>Medicine List</h1>
-    <table border="1">
+    <table class="table table-bordered">
+        <thead>
         <tr>
             <th>Id</th>
             <th>Name</th>
@@ -242,31 +266,34 @@
             <th>Quantity In</th>
             <th colspan="3">Action</th>
         </tr>
-
+        </thead>
+        <tbody>
+        <!-- Iterate over the list of pet medicines and display each item's properties -->
         <tr th:each="petmedicine : ${petmedicines}">
             <td th:text="${petmedicine.inventoryID}"></td>
             <td th:text="${petmedicine.inventoryName}"></td>
             <td th:text="${petmedicine.inventoryBrand}"></td>
             <td th:text="${petmedicine.inventoryCategory}"></td>
-            <td th:text="${petmedicine.inventoryPrice}"></td>
+            <td th:text="'RM ' + ${petmedicine.inventoryPrice}"></td>
             <td th:text="${petmedicine.quantityIn}"></td>
-            <td><a class="btn btn-info" th:href="@{/ViewPetMedicine(inventoryID=${petmedicine.inventoryID})}">View</a></td>
-            <td><a class="btn btn-primary" th:href="@{/updatePetMedicineController(inventoryID=${petmedicine.inventoryID})}">Update</a></td>
-            <td><button class="btn btn-danger" th:id="${petmedicine.inventoryID}" th:onclick="'confirmation(' + ${petmedicine.inventoryID} + ')'">Delete</button></td>
+            <td><a class="btn btn-info" th:href="@{'ViewPetMedicine?inventoryID=' + ${petmedicine.inventoryID}}">View</a></td>
+            <td><a class="btn btn-primary" th:href="@{'updatePetMedicineController?inventoryID=' + ${petmedicine.inventoryID} + '&amp;action=update'}">Update</a></td>
+            <td><button class="btn btn-danger" th:id="${petmedicine.inventoryID}" th:onclick="'confirmation(\'' + ${petmedicine.inventoryID} + '\')'">Delete</button></td>
         </tr>
+        </tbody>
     </table>
 </div>
-<script>
-function confirmation(id) {
-    console.log(id);
-    var r = confirm("Are you sure you want to delete?");
-    if (r == true) {
-        location.href = 'deletePetMedicineController?inventoryID=' + id;
-        alert("Pet Medicine successfully deleted");
-    } else {
-        return false;
+<script th:inline="javascript">
+    function confirmation(id) {
+        var r = confirm("Are you sure you want to delete?");
+        if (r == true) {
+            var staffID = /*[[${staffID}]]*/ '';
+            location.href = /*[[@{'deletePetMedicineController?inventoryID=' + id + '&staffID=' + staffID}]]*/ '';
+            alert("Pet Medicine successfully deleted");
+        } else {
+            return false;
+        }
     }
-}
 </script>
 </body>
 </html>
