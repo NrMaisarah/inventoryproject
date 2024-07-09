@@ -28,7 +28,7 @@
             font-weight: bold;
         }
         h1 {
-            color: #ff8c00; /* Darker orange */
+            color: #8FC3FF;
             text-align: center;
             margin-bottom: 20px;
         }
@@ -40,18 +40,14 @@
     </style>
 </head>
 <body>
-<header>
-    <!-- Your header content here if needed -->
-</header>
-
 <div class="container">
     <h1>Customer Account Details</h1>
-    <p class="info-label">Id: <span th:text="${customer.custID}"></span></p><br><br>
-    <p class="info-label">Name: <span th:text="${customer.custName}"></span></p><br><br>
-    <p class="info-label">Password: <span th:text="${customer.custPassword}"></span></p><br><br>
-    <p class="info-label">Email: <span th:text="${customer.custEmail}"></span></p><br><br>
-    <p class="info-label">Address: <span th:text="${customer.custAddress}"></span></p><br><br>
-    <p class="info-label">Phone Number: <span th:text="${customer.custPhoneNum}"></span></p><br><br>
+    <p class="info-label">Id:</p> <span th:text="${customer.custID}"/><br><br>
+    <p class="info-label">Name:</p> <span th:text="${customer.custName}"/><br><br>
+    <p class="info-label">Password:</p> <span th:text="${customer.custPassword}"/><br><br>
+    <p class="info-label">Email:</p> <span th:text="${customer.custEmail}"/><br><br>
+    <p class="info-label">Address:</p> <span th:text="${customer.custAddress}"/><br><br>
+    <p class="info-label">Phone Number:</p> <span th:text="${customer.custPhoneNum}"/><br><br>
     <p>Back to <a href="customerhomepage.jsp">Home</a></p>
 </div>
 
