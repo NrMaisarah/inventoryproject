@@ -1,7 +1,7 @@
 package com.heroku.DAO;
 
-    import com.heroku.java.models.Petfood;
-    //import com.heroku.java.models.Inventory;
+
+    import com.heroku.java.models.*;
 
     import java.sql.*;
     import java.util.ArrayList;

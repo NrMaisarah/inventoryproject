@@ -10,7 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.heroku.services.PetfoodService;
 import  com.heroku.DAO.PetfoodDAO;
 import com.heroku.java.models.Petfood;
-//import com.heroku.services.PetfoodService; untuk DAO
+import com.heroku.services.PetfoodService; //untuk DAO
 
 @Controller
 @RequestMapping("/petfood")
