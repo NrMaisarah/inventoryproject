@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+//import org.springframework.stereotype.Controller;
+import com.heroku.services.PetfoodService;
+import  com.heroku.DAO.PetfoodDAO;
 import com.heroku.java.models.Petfood;
 //import com.heroku.services.PetfoodService; untuk DAO
 
@@ -38,7 +40,7 @@ public class PetfoodController {
 
     @GetMapping("/list")
     public String listPetFood(@RequestParam("staffID") int staffID, Model model) {
-        model.addAttribute("petfoods", petfoodService.getAllPetFood());
+        model.addAttribute("petfoods", PetfoodController.getAllPetFoods());
         model.addAttribute("staffID", staffID);
         return "listPetFood";
     }

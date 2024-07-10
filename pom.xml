@@ -20,7 +20,20 @@
         <java.version>17</java.version>
     </properties>
 
-    <dependencies>
+<dependencies>
+    <!-- Other dependencies -->
+    <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-jpa</artifactId>
+        <version>2.6.4</version> <!-- Example version -->
+    </dependency>
+</dependencies>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-web</artifactId>
+    <version>3.2.5</version> <!-- Replace with your Spring version -->
+</dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -46,12 +59,32 @@
   <artifactId>jscience</artifactId>
   <version>4.3.1</version>
 </dependency>
-    </dependencies>
+    
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
+                <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals><goal>copy</goal></goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                                <groupId>com.heroku</groupId>
+                                <artifactId>webapp-runner</artifactId>
+                                <version>9.0.89.0</version>
+                                <destFileName>webapp-runner.jar</destFileName>
+                            </artifactItem>
+                        </artifactItems>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>

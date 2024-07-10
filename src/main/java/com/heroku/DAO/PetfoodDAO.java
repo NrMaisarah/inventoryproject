@@ -1,16 +1,19 @@
 package com.heroku.DAO;
 
-public class PetfoodDAO {
-    import inventory.model.Petfood;
+    import com.heroku.java.models.Petfood;
+    //import com.heroku.java.models.Inventory;
 
     import java.sql.*;
     import java.util.ArrayList;
     import java.util.List;
+    //import java.net.URI;
+    
     
     public class PetfoodDAO {
     
         // Create a new Petfood record in the database
         public void createPetFood(Petfood petfood) {
+           
             Connection con = null;
             PreparedStatement inventoryPs = null;
             PreparedStatement petfoodPs = null;
@@ -215,6 +218,8 @@ public class PetfoodDAO {
             }
         }
     }
+     
     
+
+
     
-}

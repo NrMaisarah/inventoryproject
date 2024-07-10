@@ -1,10 +1,10 @@
-package com.yourpackage.services;
+package com.heroku.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.yourpackage.models.Petfood;
-import com.yourpackage.repositories.PetfoodRepository;
+import com.heroku.java.models.Petfood;
+import com.heroku.repositories.PetfoodRepository;
 
 import java.util.List;
 

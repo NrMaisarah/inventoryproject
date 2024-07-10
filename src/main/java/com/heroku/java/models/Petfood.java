@@ -1,4 +1,6 @@
 package com.heroku.java.models;
+
+
 public class Petfood extends Inventory {
 
     private double foodWeight;
@@ -40,20 +42,7 @@ public class Petfood extends Inventory {
 
   
     
-    @Override
-    public String toString() {
-        return "Petfood{" +
-                "foodWeight=" + foodWeight +
-                ", quantityIn=" + quantityIn +
-                ", inventoryID=" + inventoryID +
-                ", inventoryName='" + inventoryName + '\'' +
-                ", inventoryCategory='" + inventoryCategory + '\'' +
-                ", inventoryBrand='" + inventoryBrand + '\'' +
-                ", inventoryPrice=" + inventoryPrice +
-                ", inventoryQuantityExisting=" + inventoryQuantityExisting +
-                ", inventoryReorderPoint=" + inventoryReorderPoint +
-                ", foodType=" + foodType +
-                '}';
+  
     } 
-}
+
 
