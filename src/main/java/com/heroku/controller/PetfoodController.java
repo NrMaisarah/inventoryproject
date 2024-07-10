@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.heroku.java.models.Petfood;
-//import com.heroku.services.PetfoodService; untuk DAO
+import com.heroku.services.PetfoodService; //untuk DAO
 
 @Controller
 @RequestMapping("/petfood")

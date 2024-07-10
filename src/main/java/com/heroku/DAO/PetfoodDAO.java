@@ -1,7 +1,7 @@
 package com.heroku.DAO;
 
-public class PetfoodDAO {
-    import inventory.model.Petfood;
+
+    import com.heroku.java.models.*;
 
     import java.sql.*;
     import java.util.ArrayList;
